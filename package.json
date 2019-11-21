@@ -4,6 +4,7 @@
   "description": "Battleship game implemented using ES6 and NodeJS",
   "main": "index.js",
   "scripts": {
+    "console": "node -r esm src/js/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/DanielNikolov/battleship-task/issues"
   },
-  "homepage": "https://github.com/DanielNikolov/battleship-task#readme"
+  "homepage": "https://github.com/DanielNikolov/battleship-task#readme",
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "mocha": "^6.2.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
 }
