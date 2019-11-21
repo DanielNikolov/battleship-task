@@ -10,13 +10,7 @@ const totalShipPoints = shipLengths.reduce((total, shipLength) => total + shipLe
  * @returns {boolean} is there a coordinates intersection
  */
 function checkForCollision(positions, ships) {
-    let result = false;
-    ships.forEach(ship => {
-        result = result || positions.some(position => ship.positions.indexOf(position) > -1);
-        if (result) {
-            break;
-        }
-    });
+    let result = ships.some(ship => positions.some(position => ship.positions.indexOf(position) > -1));
 
     return result;
 }
