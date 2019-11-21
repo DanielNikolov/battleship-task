@@ -75,7 +75,7 @@ export default class Board {
      * @param {number} sizeY number of Y-axis cells
      */
     constructor() {
-        this._board = Array(10).fill([]);
+        this._board = [];
         this._shotsFired = 0;
         this._hitsCount = 0;
         for (let i = 0; i < 10; i++) {
@@ -134,7 +134,7 @@ export default class Board {
         return this._shotsFired;
     }
 
-    get gameBoard() {
+    get grid() {
         return this._board;
     }
 }
