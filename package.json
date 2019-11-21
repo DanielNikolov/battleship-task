@@ -1,0 +1,20 @@
+{
+  "name": "battleship-task",
+  "version": "1.0.0",
+  "description": "Battleship game implemented using ES6 and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielNikolov/battleship-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielNikolov/battleship-task/issues"
+  },
+  "homepage": "https://github.com/DanielNikolov/battleship-task#readme"
+}
