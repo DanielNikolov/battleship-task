@@ -42,7 +42,6 @@ function generateShipPositions(shipLength) {
             shipPositions.push((row + i) + ";" + col);
         }
     }
-    console.log(`New Ship Locations: ${shipPositions}`);
     return shipPositions;
 }
 
@@ -107,7 +106,7 @@ export default class Board {
     fire(strCoordinates) {
         let result = false;
         let arrayCoordinates = strCoordinates.split(';');
-        if (!validateCoordinates(arrayCoordinates) || this._hitsCount < totalShipPoints) {
+        if (!validateCoordinates(arrayCoordinates) || this._hitsCount >= totalShipPoints) {
             return result;
         }
         this._shotsFired++;
@@ -128,6 +127,14 @@ export default class Board {
      */
     allShipsSunk() {
         return (this._hitsCount >= totalShipPoints);
+    }
+
+    isShipPosition(coordinates) {
+        if (!validateCoordinates(coordinates.split(';'))) {
+            return false;
+        }
+
+        return this._ships.some(ship => ship.positions.indexOf(coordinates) > -1);
     }
 
     get shotsFired() {

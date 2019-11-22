@@ -1,1 +1,11 @@
 @import "bootstrap/scss/bootstrap";
+
+.container {
+    &__board__value {
+        width: 20px;
+    }
+
+    &__selector input {
+        max-width: 50px;
+    }
+}

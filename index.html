@@ -6,9 +6,16 @@
     </head>
     <body>
         <div class="container">
-            <span class="row col-12 container__shot--status"></span>
-            <span class="row col-12 container__header"></span>
-            <div class="row col-12 container__board"></div>
+            <span class="row mt-3 col-12 container__status"></span>
+            <div class="row mt-3 col-12 container__board">
+                <div class="row col-12 container__board__header"></div>
+            </div>
+            <span class="row mt-3 col-12 container__endgame"></span>
+            <div class="row col-12 mt-3 container__selector">
+                <span class="mr-1">Enter coordinates (row, col), e.g. A5 =</span>
+                <input type="text" class="mr-1" maxlength="4" value=""/>
+                <button type="button" value="submit">Submit</button>
+            </div>
         </div>
         <script src="./dist/js/client.js"></script>
     </body>
