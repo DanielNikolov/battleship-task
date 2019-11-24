@@ -34,14 +34,19 @@ function fireButtonHandler() {
         let fireStatus = window.board.fire(coordinates);
         let fireStatusMsg = fireStatus ? '*** Hit ***' : '*** Miss ***';
         if (fireStatus && window.board.allShipsSunk()) {
-            document.getElementsByClassName('container__selector')[0].classList.add('d-none');
+            document.getElementsByClassName('container__selector')[0].remove();
             document.getElementsByClassName('container__endgame')[0].innerText = `Well done! You completed the game in ${window.board.shotsFired} shots`;
             fireStatusMsg = '*** Sunk ***'
         }
         document.getElementsByClassName('container__status')[0].innerText = fireStatusMsg;
     }
     printGameGrid(cheatMode);
-    initEvents();
+}
+
+function textInputHandler(e) {
+    if (e.keyCode === 13) {
+        fireButtonHandler();
+    }
 }
 
 const resetGrid = () => {
@@ -91,6 +96,8 @@ const printGameGrid = (cheatMode) => {
 let initEvents = () => {
     let selectorBtn = document.getElementsByClassName('container__selector')[0].getElementsByTagName('button')[0];
     selectorBtn.addEventListener('click', fireButtonHandler);
+    let inputField = document.getElementsByClassName('container__selector')[0].getElementsByTagName('input')[0];
+    inputField.addEventListener('keypress', textInputHandler);
 }
 
 window.onload = () => {
