@@ -4,9 +4,9 @@
   "description": "Battleship game implemented using ES6 and NodeJS",
   "main": "index.js",
   "scripts": {
-    "console": "node -r esm src/js/main.js",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require esm",
+    "cover": "nyc --reporter=html mocha --require esm"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "file-loader": "^4.2.0",
     "mocha": "^6.2.2",
     "node-sass": "^4.13.0",
+    "nyc": "^14.1.1",
     "sass-loader": "^8.0.0",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"

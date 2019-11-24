@@ -1,7 +1,6 @@
 import Board from './board';
 
 window.board = new Board();
-window.board.addShips();
 
 const validateCoordinates = (coordinates) => {
     if (!coordinates || coordinates.length < 2) {
@@ -32,8 +31,9 @@ function fireButtonHandler() {
     let cheatMode = (selectorInputValue.toUpperCase() === 'SHOW');
     if (!cheatMode) {
         let coordinates = convertCoordinates(selectorInputValue);
-        let fireStatusMsg = '*** Miss ***';
-        if (window.board.fire(coordinates) && window.board.allShipsSunk()) {
+        let fireStatus = window.board.fire(coordinates);
+        let fireStatusMsg = fireStatus ? '*** Hit ***' : '*** Miss ***';
+        if (fireStatus && window.board.allShipsSunk()) {
             document.getElementsByClassName('container__selector')[0].classList.add('d-none');
             document.getElementsByClassName('container__endgame')[0].innerText = `Well done! You completed the game in ${window.board.shotsFired} shots`;
             fireStatusMsg = '*** Sunk ***'

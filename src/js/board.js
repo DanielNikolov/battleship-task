@@ -67,6 +67,23 @@ function validateCoordinates(arrayCoordinates) {
     return (parseInt(arrayCoordinates[1]) > -1 && parseInt(arrayCoordinates[1]) < 10);
 }
 
+/**
+ * Creates ships
+ * @returns {Array} created ships array
+ */
+function createShips() {
+    let positions;
+    let ships = []
+    shipLengths.forEach(shipLength => {
+        do {
+            positions = generateShipPositions(shipLength);
+        } while (checkForCollision(positions, ships) || positions.length !== shipLength);
+        ships.push(new Ship(shipLength, positions));
+    });
+
+    return ships;
+}
+
 export default class Board {
     /**
      * Initialize empty game board
@@ -80,20 +97,7 @@ export default class Board {
         for (let i = 0; i < 10; i++) {
             this._board.push(Array(10).fill('*'));
         }
-        this._ships = [];
-    }
-
-    /**
-     * Adds a new ship to the board
-     */
-    addShips() {
-        let positions;
-        shipLengths.forEach(shipLength => {
-            do {
-                positions = generateShipPositions(shipLength);
-            } while (checkForCollision(positions, this._ships) || positions.length !== shipLength);
-            this._ships.push(new Ship(shipLength, positions));
-        });
+        this._ships = createShips();
     }
 
     /**
@@ -110,11 +114,11 @@ export default class Board {
             return result;
         }
         this._shotsFired++;
-        result = this._ships.some(ship => ship.positions.indexOf(strCoordinates) > -1);
+        result = this._ships.some(ship => ship.checkAndMarkHit(strCoordinates));
         if (result) {
             this._board[parseInt(arrayCoordinates[0])][parseInt(arrayCoordinates[1])] = 'X';
             this._hitsCount++;
-        } else {
+        } else if (this._board[parseInt(arrayCoordinates[0])][parseInt(arrayCoordinates[1])] !== 'X') {
             this._board[parseInt(arrayCoordinates[0])][parseInt(arrayCoordinates[1])] = '-';
         }
 
