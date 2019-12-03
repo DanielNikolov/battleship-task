@@ -13,18 +13,18 @@ const validateCoordinates = (coordinates) => {
     if (!regexResult || regexResult.length > 1) {
         return false;
     }
-    let result = coordinates.substring(1).match(/[0-9]{1,2}/g);
+    const result = coordinates.substring(1).match(/[0-9]{1,2}/g);
     return (result && result.length > 0);
 }
 
 const convertCoordinates = (coordinates) => {
-    let pointX = coordinates.substring(0, 1).toUpperCase().charCodeAt(0) - 65;
-    let pointY = parseInt(coordinates.substring(1)) - 1;
+    const pointX = coordinates.substring(0, 1).toUpperCase().charCodeAt(0) - 65;
+    const pointY = parseInt(coordinates.substring(1)) - 1;
     return `${pointX};${pointY}`;
 }
 
 function fireButtonHandler() {
-    let selectorInputValue = document.getElementsByClassName('container__selector')[0].getElementsByTagName('input')[0].value;
+    const selectorInputValue = document.getElementsByClassName('container__selector')[0].getElementsByTagName('input')[0].value;
     if (!validateCoordinates(selectorInputValue)) {
         return;
     }
@@ -55,8 +55,7 @@ const resetGrid = () => {
 }
 
 const printHeader = (container) => {
-    let headerValues = Array.from(Array(11).keys())
-    headerValues.forEach((headerValue) => {
+    Array.from(Array(11).keys()).forEach((headerValue) => {
         let headerValueDiv = document.createElement('div');
         headerValueDiv.classList.add('container__board__value', 'text-center');
         headerValueDiv.innerText = headerValue > 0 ? headerValue : ' ';
@@ -65,19 +64,18 @@ const printHeader = (container) => {
 }
 const printBoard = (container, cheatMode) => {
     window.board.grid.forEach((element, index) => {
-        let rowElement = document.createElement('div');
-        let rowIndex = index;
+        const rowElement = document.createElement('div');
+        const rowIndex = index;
         rowElement.classList.add('row', 'col-12', 'js-grid-row');
-        let columnElement = document.createElement('div');
+        const columnElement = document.createElement('div');
         columnElement.classList.add('container__board__value', 'text-center');
         columnElement.innerText = String.fromCharCode(65 + index);
         rowElement.appendChild(columnElement);
         element.forEach((square, index) => {
-            let boardElement = document.createElement('div');
+            const boardElement = document.createElement('div');
             boardElement.classList.add('container__board__value', 'text-center');
-            let coordinates = `${rowIndex};${index}`
             if (cheatMode) {
-                boardElement.innerText = window.board.isShipPosition(coordinates) ? 'X' : '';
+                boardElement.innerText = window.board.isShipPosition(`${rowIndex};${index}`) ? 'X' : '';
             } else {
                 boardElement.innerText = square;
             }
@@ -94,9 +92,9 @@ const printGameGrid = (cheatMode) => {
 }
 
 let initEvents = () => {
-    let selectorBtn = document.getElementsByClassName('container__selector')[0].getElementsByTagName('button')[0];
+    const selectorBtn = document.getElementsByClassName('container__selector')[0].getElementsByTagName('button')[0];
     selectorBtn.addEventListener('click', fireButtonHandler);
-    let inputField = document.getElementsByClassName('container__selector')[0].getElementsByTagName('input')[0];
+    const inputField = document.getElementsByClassName('container__selector')[0].getElementsByTagName('input')[0];
     inputField.addEventListener('keypress', textInputHandler);
 }
 

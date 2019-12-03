@@ -10,9 +10,7 @@ const totalShipPoints = shipLengths.reduce((total, shipLength) => total + shipLe
  * @returns {boolean} is there a coordinates intersection
  */
 function checkForCollision(positions, ships) {
-    let result = ships.some(ship => positions.some(position => ship.positions.indexOf(position) > -1));
-
-    return result;
+    return ships.some(ship => positions.some(position => ship.positions.indexOf(position) > -1));
 }
 
 /**
@@ -21,7 +19,7 @@ function checkForCollision(positions, ships) {
  * @returns {Array} sequence of coordinates marking the ship's position
  */
 function generateShipPositions(shipLength) {
-    let direction = Math.floor(Math.random() * 2);
+    const direction = Math.floor(Math.random() * 2);
     let shipPositions = [];
     let row, col;
 
@@ -109,7 +107,7 @@ export default class Board {
      */
     fire(strCoordinates) {
         let result = false;
-        let arrayCoordinates = strCoordinates.split(';');
+        const arrayCoordinates = strCoordinates.split(';');
         if (!validateCoordinates(arrayCoordinates) || this._hitsCount >= totalShipPoints) {
             return result;
         }
